@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Timestamps Discord</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 {
+            color: #7289da;
+        }
+        input[type="datetime-local"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #7289da;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #5b6e8e;
+        }
+        .output {
+            margin-top: 20px;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Générateur de Timestamp Discord</h1>
+        <p>Sélectionnez une date et une heure pour générer un timestamp Discord.</p>
+
+        <input type="datetime-local" id="timestampInput">
+
+        <button onclick="generateTimestamp()">Générer Timestamp</button>
+
+        <div class="output" id="timestampOutput"></div>
+    </div>
+
+    <script>
+        function generateTimestamp() {
+            const input = document.getElementById('timestampInput').value;
+            if (!input) {
+                alert("Veuillez sélectionner une date et une heure.");
+                return;
+            }
+
+            // Convertir la date et l'heure en timestamp UNIX
+            const date = new Date(input);
+            const timestamp = Math.floor(date.getTime() / 1000);
+
+            // Créer le format de timestamp Discord
+            const discordTimestamp = `<t:${timestamp}>`;
+
+            // Afficher le timestamp généré
+            document.getElementById('timestampOutput').textContent = `Voici votre timestamp Discord :\n${discordTimestamp}`;
+        }
+    </script>
+
+</body>
+</html>
